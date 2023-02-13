@@ -14,7 +14,7 @@ class ApiClient{
   _init(){
     dio=Dio(
         BaseOptions(
-            baseUrl: "https://randomuser.me",
+            baseUrl: "https://tenders.guru",
             connectTimeout: 25000,
             receiveTimeout: 20000
         )
