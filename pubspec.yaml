@@ -41,6 +41,8 @@ dependencies:
   cached_network_image: ^3.2.3
   shimmer: ^2.0.0
   flutter_telegram_login: ^0.0.2
+  mask_text_input_formatter: ^2.4.0
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:

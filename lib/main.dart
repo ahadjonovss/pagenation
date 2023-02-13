@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pagenation/bloc/auth_cubit/auth_cubit.dart';
+import 'package:pagenation/ui/auth/auth_page.dart';
 import 'package:pagenation/ui/pagenation_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiBlocProvider(
+    providers: [
+     BlocProvider(create: (context) =>  AuthCubit(),)
+    ],
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -17,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PageNationPage(),
+      home: TelegramAuthPage(),
     );
   }
 }
