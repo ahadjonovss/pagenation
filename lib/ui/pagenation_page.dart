@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pagenation/data/models/my_response.dart';
 import 'package:pagenation/data/service/api_service/api_service.dart';
+import 'package:pagenation/ui/auth/auth_page.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PageNationPage extends StatefulWidget {
@@ -24,7 +25,13 @@ class _PageNationPageState extends State<PageNationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("PageNation"),),
+      appBar: AppBar(title: const Text("PageNation"),
+        actions: [
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => TelegramAuthPage(),));
+          }, icon: Icon(Icons.next_plan))
+        ],
+      ),
       body: posts.isNotEmpty?ListView.builder(
         shrinkWrap: true,
         itemCount: posts.length+1,
@@ -36,13 +43,6 @@ class _PageNationPageState extends State<PageNationPage> {
               child: ListTile(
           subtitle: CachedNetworkImage(
               imageUrl: posts[index].jetpackFeaturedMediaUrl,
-              errorWidget: (context, url, error) =>  Container(
-                height: 200,
-                width: 400,
-                child: Center(
-                  child: Text(error),
-                ),
-              ),
               progressIndicatorBuilder: (context, url, progress) => Shimmer.fromColors(baseColor: Colors.grey, highlightColor: Colors.white, child: Container(
                 height: 200,
                 width: 400,
