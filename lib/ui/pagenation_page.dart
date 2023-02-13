@@ -1,7 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pagenation/data/models/my_response.dart';
-import 'package:pagenation/data/models/posts_model.dart';
 import 'package:pagenation/data/service/api_service/api_service.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PageNationPage extends StatefulWidget {
    PageNationPage({Key? key}) : super(key: key);
@@ -30,9 +31,29 @@ class _PageNationPageState extends State<PageNationPage> {
         controller: scrollController,
         itemBuilder: (context, index) => index==posts.length?const SizedBox(
           height: 40,
-            child: Center(child: CircularProgressIndicator())):ListTile(
-          subtitle: Text(posts[index].title.rendered),
-          title: Text(posts[index].id.toString()),),):SizedBox(),
+            child: Center(child: CircularProgressIndicator())):Container(
+          margin: const EdgeInsets.all(12),
+              child: ListTile(
+          subtitle: CachedNetworkImage(
+              imageUrl: posts[index].jetpackFeaturedMediaUrl,
+              errorWidget: (context, url, error) =>  Container(
+                height: 200,
+                width: 400,
+                child: Center(
+                  child: Text(error),
+                ),
+              ),
+              progressIndicatorBuilder: (context, url, progress) => Shimmer.fromColors(baseColor: Colors.grey, highlightColor: Colors.white, child: Container(
+                height: 200,
+                width: 400,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12)
+                ),
+              )),
+          ),
+          title: Center(child: Text(posts[index].title.rendered.toString())),),
+            ),): const SizedBox(),
     );
   }
 
