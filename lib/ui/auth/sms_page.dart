@@ -80,7 +80,6 @@ class _MyAppState extends State<SmsVerificationPage> {
       _enableButton = false;
     }
     await Future.delayed( const Duration(seconds: 3));
-    print("O'tishi kerak");
     // ignore: use_build_context_synchronously
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PageNationPage(),), (route) => false);
 

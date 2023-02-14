@@ -5,6 +5,7 @@ import 'package:pagenation/bloc/auth_cubit/auth_cubit.dart';
 import 'package:pagenation/ui/auth/sms_page.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
+// ignore: must_be_immutable
 class TelegramAuthPage extends StatelessWidget {
    TelegramAuthPage({Key? key}) : super(key: key);
 
@@ -30,9 +31,6 @@ class TelegramAuthPage extends StatelessWidget {
       builder: (context, state) {
         return  Scaffold(
             appBar: AppBar(
-              leading: IconButton(icon: Icon(Icons.arrow_back_ios,color: Colors.blue,),onPressed: () {
-                Navigator.pop(context);
-              },),
               elevation: 0,
               backgroundColor: Colors.white,
             ),
