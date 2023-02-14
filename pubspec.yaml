@@ -43,6 +43,11 @@ dependencies:
   flutter_telegram_login: ^0.0.2
   mask_text_input_formatter: ^2.4.0
   equatable: ^2.0.5
+  sms_autofill: ^2.2.0
+  pin_input_text_field: ^4.4.0
+  pinput: ^2.2.23
+  flutter_sms: ^2.3.3
+  
 
 dev_dependencies:
   flutter_test:

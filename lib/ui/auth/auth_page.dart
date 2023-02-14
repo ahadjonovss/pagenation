@@ -19,7 +19,7 @@ class TelegramAuthPage extends StatelessWidget {
       listener: (context, state) {
         if(state.isDone){
           print("Ketishi kere");
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ConfirmPage(),));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  HomePage(),));
         }
       },
       builder: (context, state) {
