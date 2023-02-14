@@ -103,9 +103,11 @@ class NajotTalim{
   }
 
   Map c (){
-    return {
-
-    };
+    Map informations ={};
+    for (var element in _groups) {
+      informations[element.courseType]=element.groupName;
+    }
+    return informations;
   }
 
   Group getTheBiggestGroup(){
