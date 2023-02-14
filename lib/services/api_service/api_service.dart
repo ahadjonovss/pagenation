@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:pagenation/data/models/my_response.dart';
 import 'package:pagenation/data/models/page_model.dart';
 import 'package:pagenation/data/models/posts_model.dart';
-import 'package:pagenation/data/service/api_service/api_client.dart';
+import 'package:pagenation/services/api_service/api_client.dart';
 
 class ApiService extends ApiClient {
   Future<MyResponse> getPages(int page) async {

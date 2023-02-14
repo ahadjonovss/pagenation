@@ -1,7 +1,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:pagenation/data/service/api_service/custom_exceptions.dart';
+import 'package:pagenation/services/api_service/custom_exceptions.dart';
 
 class ApiClient{
 
