@@ -26,11 +26,6 @@ class _PageNationPageState extends State<PageNationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("PageNation"),
-        actions: [
-          IconButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => TelegramAuthPage(),));
-          }, icon: Icon(Icons.next_plan))
-        ],
       ),
       body: posts.isNotEmpty?ListView.builder(
         shrinkWrap: true,
