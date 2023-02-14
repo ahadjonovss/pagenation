@@ -59,40 +59,31 @@ class _MyAppState extends State<SmsVerificationPage> {
     });
   }
 
-  _onSubmitOtp() {
-    setState(() {
-      _isLoadingButton = !_isLoadingButton;
-      _verifyOtpCode();
-    });
-  }
 
-  _onClickRetry() {
-    _startListeningSms();
-  }
 
-  _onOtpCallBack(String otpCode, bool isAutofill) {
+  _onOtpCallBack(String otpCode, bool isAutofill) async {
     setState(()  {
       _otpCode = otpCode;
     });
 
-    setState(() async {
-      if (otpCode.length == _otpCodeLength && isAutofill) {
-        _enableButton = false;
-        _isLoadingButton = true;
-        print("1 Tushdi");
-        _verifyOtpCode();
-      } else if (otpCode.length == _otpCodeLength && !isAutofill) {
-        _enableButton = true;
-        _isLoadingButton = false;
-        print("2 Tushdi");
+    if (otpCode.length == _otpCodeLength && isAutofill) {
+      _enableButton = false;
+      _isLoadingButton = true;
+      print("1 Tushdi");
+      _verifyOtpCode();
+    } else if (otpCode.length == _otpCodeLength && !isAutofill) {
+      _enableButton = true;
+      _isLoadingButton = false;
+      print("2 Tushdi");
 
-      } else {
-        _enableButton = false;
-        await Future.delayed( const Duration(seconds: 3));
-        // ignore: use_build_context_synchronously
-        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PageNationPage(),), (route) => false);
-      }
-    });
+    } else {
+      _enableButton = false;
+    }
+    await Future.delayed( const Duration(seconds: 3));
+    print("O'tishi kerak");
+    // ignore: use_build_context_synchronously
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PageNationPage(),), (route) => false);
+
   }
 
   _verifyOtpCode() {

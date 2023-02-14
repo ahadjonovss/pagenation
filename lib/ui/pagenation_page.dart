@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pagenation/data/models/my_response.dart';
 import 'package:pagenation/data/service/api_service/api_service.dart';
-import 'package:pagenation/ui/auth/auth_page.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PageNationPage extends StatefulWidget {

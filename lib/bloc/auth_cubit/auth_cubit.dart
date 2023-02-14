@@ -1,6 +1,6 @@
+import 'package:auth_repository/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:pagenation/data/repositories/auth_repository.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -13,8 +13,7 @@ class AuthCubit extends Cubit<AuthState> {
     if(number.startsWith("+998")){
       emit(state.copyWith(isUzb: true));
     }
-    if(number.length==19){
-      print("Keldi");
+    if(number.length==18){
       nextPage( number,signature);
     }
     print(number.length);
@@ -26,6 +25,6 @@ class AuthCubit extends Cubit<AuthState> {
     emit(state.copyWith(isLoading: true));
     await Future.delayed( const Duration(seconds: 3));
     emit(state.copyWith(isDone:true));
-    AuthRepository().sendSms(number: number, signature: signature);
+    Auth().sendSms(number: number, signature: signature);
   }
 }

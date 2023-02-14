@@ -9,7 +9,7 @@ class TelegramAuthPage extends StatelessWidget {
    TelegramAuthPage({Key? key}) : super(key: key);
 
   var maskFormatter =  MaskTextInputFormatter(
-      mask: '+### | ## ###-##-##',
+      mask: '+###  ## ###-##-##',
       filter: { "#": RegExp(r'[0-9]') },
       type: MaskAutoCompletionType.lazy
   );
@@ -24,7 +24,7 @@ class TelegramAuthPage extends StatelessWidget {
     return BlocConsumer<AuthCubit,AuthState>(
       listener: (context, state) {
         if(state.isDone){
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  SmsVerificationPage(),));
+          Navigator.push(context, MaterialPageRoute(builder: (context) =>  const SmsVerificationPage(),));
         }
       },
       builder: (context, state) {
@@ -72,14 +72,13 @@ class TelegramAuthPage extends StatelessWidget {
                       child: Text(state.isUzb?"🇺🇿 Uzbekistan":"Non defined",style: TextStyle(color: Colors.grey),),
                     ),
                     const SizedBox(height: 30,),
-                    Container(
+                    SizedBox(
                       width: 400,
                       child: TextField(
                         inputFormatters: [maskFormatter],
                         keyboardType: TextInputType.number,
                         onChanged: (value) {
                           context.read<AuthCubit>().checkNumber(value,signature??'');
-                          print("Here is signature $signature");
                         },
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
