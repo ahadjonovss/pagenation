@@ -3,23 +3,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pagenation/bloc/auth_cubit/auth_cubit.dart';
 import 'package:pagenation/ui/auth/sms_page.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class TelegramAuthPage extends StatelessWidget {
    TelegramAuthPage({Key? key}) : super(key: key);
 
-  var maskFormatter = new MaskTextInputFormatter(
+  var maskFormatter =  MaskTextInputFormatter(
       mask: '+### | ## ###-##-##',
       filter: { "#": RegExp(r'[0-9]') },
       type: MaskAutoCompletionType.lazy
   );
 
+  String? signature;
+
   @override
   Widget build(BuildContext context) {
+    SmsAutoFill().getAppSignature.then((signature) {
+     this.signature =signature;
+    });
     return BlocConsumer<AuthCubit,AuthState>(
       listener: (context, state) {
         if(state.isDone){
-          print("Ketishi kere");
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  HomePage(),));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  SmsVerificationPage(),));
         }
       },
       builder: (context, state) {
@@ -37,7 +42,7 @@ class TelegramAuthPage extends StatelessWidget {
 
 
               },
-              child: context.read<AuthCubit>().state.isDone?const Padding(
+              child: context.read<AuthCubit>().state.isLoading?const Padding(
                padding: EdgeInsets.all(14),
                 child:  Center(
                   child: CircularProgressIndicator(
@@ -51,12 +56,12 @@ class TelegramAuthPage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 32),
                 child: Column(
                   children:  [
-                    SizedBox(height: 120,),
-                    Text("Your phone number",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
-                    Text("Please, confirm your country code\nand enter your phone number",textAlign:TextAlign.center,style: TextStyle(fontSize: 14,),),
-                    SizedBox(height: 30,),
+                    const SizedBox(height: 120,),
+                    const Text("Your phone number",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+                    const Text("Please, confirm your country code\nand enter your phone number",textAlign:TextAlign.center,style: TextStyle(fontSize: 14,),),
+                    const SizedBox(height: 30,),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       alignment: Alignment.centerLeft,
                       height: 56,
                       width: 400,
@@ -66,14 +71,15 @@ class TelegramAuthPage extends StatelessWidget {
                       ),
                       child: Text(state.isUzb?"🇺🇿 Uzbekistan":"Non defined",style: TextStyle(color: Colors.grey),),
                     ),
-                    SizedBox(height: 30,),
+                    const SizedBox(height: 30,),
                     Container(
                       width: 400,
                       child: TextField(
                         inputFormatters: [maskFormatter],
                         keyboardType: TextInputType.number,
                         onChanged: (value) {
-                          context.read<AuthCubit>().checkNumber(value);
+                          context.read<AuthCubit>().checkNumber(value,signature??'');
+                          print("Here is signature $signature");
                         },
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),

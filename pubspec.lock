@@ -421,6 +421,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  sms_otp_auto_verify:
+    dependency: "direct main"
+    description:
+      name: sms_otp_auto_verify
+      sha256: "7c7fa9c7f08f60b34e9ba683796899b13c889a68d074b5ed91db9ab72f9b1355"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   source_span:
     dependency: transitive
     description:
@@ -477,6 +485,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  telephony:
+    dependency: "direct main"
+    description:
+      name: telephony
+      sha256: "821e074acec3c611e48edadd50a6d9fef864943771a545da7924adcc8509ada9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   term_glyph:
     dependency: transitive
     description:
